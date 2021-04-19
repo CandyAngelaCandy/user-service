@@ -1,0 +1,8 @@
+ docker build -t node-user-service .
+ docker run  -p 8000:8000 -d node-user-service
+ docker ps
+ docker logs -f 69d779f5ddd9
+ docker exec -it b06fe5f3b06d bash
+
+
+

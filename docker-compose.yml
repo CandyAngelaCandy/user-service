@@ -1,0 +1,35 @@
+version: "1"
+
+networks:
+  user_app:
+
+services:
+  user_service:
+    image: node-user-service
+    restart: always
+    environment:
+      - DB_HOST=postgres_base
+      - DB_PORT=5432
+      - DB_NAME=user
+      - DB_USER=yyhuang
+      - DB_PASSWORD=password12
+    networks:
+      - user_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_base
+
+  postgres_base:
+    image: postgres:11.5
+    restart: always
+    environment:
+      POSTGRES_USER: yyhuang
+      POSTGRES_PASSWORD: password12
+      POSTGRES_DB: user
+    networks:
+      - user_app
+    ports:
+      - "5431:5432"
+
+
