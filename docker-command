@@ -3,6 +3,7 @@
  docker ps
  docker logs -f 69d779f5ddd9
  docker exec -it b06fe5f3b06d bash
+ docker stop $(docker ps -aq)
 
 
 

@@ -1,10 +1,11 @@
-version: "1"
+version: "2.2"
 
 networks:
   user_app:
+  user_service:
 
 services:
-  user_service:
+  user-service:
     image: node-user-service
     restart: always
     environment:
@@ -14,7 +15,7 @@ services:
       - DB_USER=yyhuang
       - DB_PASSWORD=password12
     networks:
-      - user_app
+      - user_service
     ports:
       - "8000:8000"
     depends_on:
@@ -28,8 +29,19 @@ services:
       POSTGRES_PASSWORD: password12
       POSTGRES_DB: user
     networks:
-      - user_app
+      - user_service
     ports:
       - "5431:5432"
+
+  react-app:
+    image: react-app
+    restart: always
+    networks:
+      - user_app
+      - user_service
+    ports:
+      - "3000:3000"
+    depends_on:
+      - user-service
 
 

@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
+
+app.use(cors())
 
 const Pool = require('pg').Pool
 const pool = new Pool({
@@ -8,6 +11,17 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
+})
+
+const port = 8000;
+app.listen(port, () => {
+  console.log('We are listen on ' + port);
+});
+
+createUsersTable()
+app.post('/api/user', async function (req, res) {
+  addUser()
+  res.send("add user success")
 })
 
 // create user table
@@ -44,16 +58,6 @@ function addUser() {
     console.log('insert id:', result);
   });
 }
-
-const port = 8000;
-app.listen(port, () => {
-  console.log('We are listen on ' + port);
-});
-
-app.post('/user', async function (req, res) {
-  createUsersTable()
-  addUser()
-})
 
 
 
