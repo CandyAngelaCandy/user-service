@@ -24,6 +24,25 @@ app.post('/api/user', async function (req, res) {
   res.send("add user success")
 })
 
+// delete user table
+function deleteUsersTable() {
+  const createUsersTableSql = `
+  CREATE TABLE users (
+    id              bigserial primary key,
+    name            varchar(300),
+    email           varchar(300),
+    phone_number    varchar(50)
+ )`
+
+  pool.query(createUsersTableSql, function (err, result) {
+    if (err) {
+      console.log('add user table error --', err.message);
+      return;
+    }
+    console.log('add users stable error', err)
+  });
+}
+
 // create user table
 function createUsersTable() {
   const createUsersTableSql = `
@@ -41,7 +60,6 @@ function createUsersTable() {
     }
     console.log('add users stable error', err)
   });
-
 }
 
 // add user

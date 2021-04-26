@@ -5,5 +5,7 @@
  docker exec -it b06fe5f3b06d bash
  docker stop $(docker ps -aq)
 
+ curl -X -i -POST http://nginx-gateway:4000/api/user
+
 
 

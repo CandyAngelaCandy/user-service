@@ -5,28 +5,6 @@ networks:
   user_service:
 
 services:
-
-  react-app:
-    image: react-app
-    restart: always
-    networks:
-      - user_app
-    ports:
-      - "3000:3000"
-    depends_on:
-      - nginx-gateway
-
-  nginx-gateway:
-    image: nginx-gateway
-    restart: always
-    networks:
-      - user_app
-      - user_service
-    ports:
-      - "4000:4000"
-    depends_on:
-      - user-service
-
   user-service:
     image: node-user-service
     restart: always
@@ -55,5 +33,24 @@ services:
     ports:
       - "5431:5432"
 
+  react-app:
+    image: react-app
+    restart: always
+    networks:
+      - user_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nginx-gateway
 
+  nginx-gateway:
+    image: nginx-gateway
+    restart: always
+    networks:
+      - user_app
+      - user_service
+    ports:
+      - "4000:4000"
+    depends_on:
+      - user-service
 
