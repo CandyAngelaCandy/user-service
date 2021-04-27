@@ -11,3 +11,12 @@ docker volume ls
 docker volume inspect XX
 
 
+docker ps -a
+
+//停止所有的容器
+docker stop $(docker ps -aq)
+
+//删除所有的容器
+docker rm $(docker ps -aq)
+
+

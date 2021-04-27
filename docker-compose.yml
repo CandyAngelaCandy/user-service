@@ -37,7 +37,7 @@ services:
     volumes:
       - db-cache:/var/lib/postgresql/data
     ports:
-      - "5431:5432"
+      - "5432:5432"
 
   react-app:
     image: react-app
