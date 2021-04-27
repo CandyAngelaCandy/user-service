@@ -4,6 +4,9 @@ networks:
   user_app:
   user_service:
 
+volumes:
+  db-cache:
+
 services:
   user-service:
     image: node-user-service
@@ -31,6 +34,8 @@ services:
       POSTGRES_DB: user
     networks:
       - user_service
+    volumes:
+      - db-cache:/var/lib/postgresql/data
     ports:
       - "5431:5432"
 

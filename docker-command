@@ -7,5 +7,7 @@
 
  curl -X -i -POST http://nginx-gateway:4000/api/user
 
+docker volume ls
+docker volume inspect XX
 
 
