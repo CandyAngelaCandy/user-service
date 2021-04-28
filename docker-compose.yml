@@ -9,7 +9,7 @@ volumes:
 
 services:
   user-service:
-    image: node-user-service
+    image: huangyanyan/node-user-service
     restart: always
     environment:
       - DB_HOST=postgres_base
@@ -40,7 +40,7 @@ services:
       - "5432:5432"
 
   react-app:
-    image: react-app
+    image: huangyanyan/react-app
     restart: always
     networks:
       - user_app
@@ -50,7 +50,7 @@ services:
       - nginx-gateway
 
   nginx-gateway:
-    image: nginx-gateway
+    image: huangyanyan/nginx-gateway
     restart: always
     networks:
       - user_app
